@@ -1,0 +1,6 @@
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y xinetd telnetd
+COPY ./telnet /etc/xinetd.d/telnet
+RUN echo "root:root" | chpasswd
+EXPOSE 23
+CMD ["xinetd", "-dontfork"]
